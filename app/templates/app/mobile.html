@@ -1,0 +1,46 @@
+{% extends "app/base.html" %}
+{% load static %}
+{% block title %}Mobile{% endblock title %}
+{% block main_content %}
+<div class="container my-5">
+  <div class="row">
+    <div class="col-sm-3">
+      <div class="list-group">
+        <a href="{% url "mobile" %}" class="list-group-item list-group-item-action">All Mobiles</a>
+        <a href="{% url "mobiledata" "Redmi"  %}" class="list-group-item list-group-item-action" aria-current= "true">Redmi</a>
+        <a href="{% url "mobiledata" "Realme"  %}" class="list-group-item list-group-item-action" aria-current= "true">Realme</a>
+        <a href="{% url "mobiledata" "Samsung"  %}" class="list-group-item list-group-item-action" aria-current= "true">Samsung</a>
+        <a href="{% url "mobiledata" "Oppo"  %}" class="list-group-item list-group-item-action" aria-current= "true">Oppo</a>
+        <a href="{% url "mobiledata" "i-Phone"  %}" class="list-group-item list-group-item-action" aria-current= "true">i-Phone</a>
+        <a href="{% url "mobiledata" "OnePlus"  %}" class="list-group-item list-group-item-action" aria-current= "true">OnePlus</a>
+        <a href="{% url "mobiledata" "Moto"  %}" class="list-group-item list-group-item-action" aria-current= "true">Moto</a>
+        <a href="{% url "mobiledata" "below"  %}" class="list-group-item list-group-item-action" aria-current= "true">Below Rs. 17000</a>
+        <a href="{% url "mobiledata" "greater"  %}" class="list-group-item list-group-item-action" aria-current= "true">Greater than Rs. 17000</a>
+        
+      </div>
+    </div>
+    <div class="col-sm-8 offset-sm-1">
+      <div class="row">
+        {% for mobile in mobiles %}
+        <div class="col-sm-4 mb-3">
+          <div class="card">
+            <a href="{% url "product_details" mobile.id %}">
+              <img src="{{mobile.product_image.url}}" alt="" class="img-fluid img-thumbnail" height="200">
+            </a>
+            
+            <div class="card-footer text-center">
+              <div class="fw-bold">{{mobile.title}}</div>
+              <div>Rs. {{mobile.discounted_price}} 
+                <small class="fw-light text-decoration-line-through">{{mobile.selling_price}}
+                </small></div>
+            </div>
+          </div>
+        </div>
+        
+        {% endfor %}
+
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock main_content %}
